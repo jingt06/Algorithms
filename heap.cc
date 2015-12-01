@@ -7,6 +7,13 @@ using namespace std;
 class Max_heap {
 	public:
 		vector<int> heap;
+		bool empty;
+
+		Max_heap(vector<int> input){ // ctor for Max_heap
+			heap = input;
+			heapify();
+			empty = (heap.size != 0);
+		}
 
 		void bubble_down(int i){
 			int size = heap.size();
@@ -30,6 +37,15 @@ class Max_heap {
 			}
 		}
 
+		void bubble_up(int i){
+			while(i!=0 && heap[(i-1)/2] < heap[i]){
+				int tmp = heap[i];
+				heap[i] = heap[(i-1)/2];
+				heap[(i-1)/2] = tmp;
+				i = (i-1)/2;
+			}
+		}
+
 		void heapify(){
 			int n = heap.size()-1;
 			for(int i = n/2 ;i >= 0; i--){
@@ -37,9 +53,19 @@ class Max_heap {
 			}
 		}
 
-		Max_heap(vector<int> input){
-			heap = input;
-			heapify();
+		void insert(int i){
+			heap.push_back(i);
+			bubble_up(heap.size()-1);	
+		}
+
+		void delete_max(){
+			int size = heap.size();
+			int max = heap[0];
+			heap[0] = heap[size-1];
+			heap[size-1] = max;
+			heap.pop_back();
+			bubble_down(0);
+			empty = (size-1!=0);
 		}
 };
 
@@ -52,9 +78,23 @@ int main(){
 	while( cin>>input ){
 		items.push_back(input);
 	}
-	Max_heap * mh = new Max_heap(items);
+	Max_heap * max_heap = new Max_heap(items);
 	cout<<endl<< "Heapified Result"<<endl;
-	for(int i=0; i<mh->heap.size(); i++){
-		cout<< mh->heap	[i] <<endl;
+	for(int i=0; i<max_heap->heap.size(); i++){
+		cout<< max_heap->heap	[i] <<endl;
+	}
+	cout<<"heap insert(100)";
+	max_heap->insert(100);	
+	cout<<"heap insert(0)";
+	max_heap->insert(0);	
+	cout<<"heap insert(-100)";
+	max_heap->insert(-100);	
+	cout<<endl<< "Result after heap insert"<<endl;
+	for(int i=0; i<max_heap->heap.size(); i++){
+		cout<< max_heap->heap	[i] <<endl;
+	}
+	cout<<endl<< "Heap Sort Result"<<endl;
+	while(!max_heap->empty){
+		cout<<max_heap->delete_max()<<endl;
 	}
 }
