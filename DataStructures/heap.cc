@@ -13,6 +13,7 @@ class Max_heap {
 			heapify();
 		}
 
+		//bubble down at position i
 		void bubble_down(int i){
 			int size = heap.size();
 			while(i < size/2){
@@ -35,6 +36,7 @@ class Max_heap {
 			}
 		}
 
+		//bubble up at position i
 		void bubble_up(int i){
 			while(i!=0 && heap[(i-1)/2] < heap[i]){
 				int tmp = heap[i];
@@ -44,6 +46,7 @@ class Max_heap {
 			}
 		}
 
+		//heapify of runtime Ɵ(n)
 		void heapify(){
 			int n = heap.size()-1;
 			for(int i = n/2 ;i >= 0; i--){
@@ -51,11 +54,13 @@ class Max_heap {
 			}
 		}
 
+		//heap insedrt a integer i
 		void insert(int i){
 			heap.push_back(i);
 			bubble_up(heap.size()-1);	
 		}
 
+		//return and delete the max key in the Max Heap
 		int delete_max(){
 			int size = heap.size();
 			int max = heap[0];
