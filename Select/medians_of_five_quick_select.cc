@@ -6,7 +6,9 @@ int partition(vector <int> & A, int p);
 int choose_pivot(vector <int> & A); // choose pivot using mediam of five
 void swap(int & a, int & b);
 
-// quick select, select A[0] as pivot, Runtime is ϴ(n) 
+// quick select, implemented using "medians of five" 
+// (invented by Tarjan in 1973)
+// worst case expected rumtime is O(n)
 int quick_select(vector <int> & A, int k){
 	int p = choose_pivot(A); // pivot
 	int i = partition(A,p);
