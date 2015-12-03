@@ -1,15 +1,14 @@
 #include <vector>
 #include <iostream>
-#include <stdlib.h>     
-#include <time.h>       
 using namespace std;
 
 int partition(vector <int> & A, int p);
+int choose_pivot(vector <int> & A); // choose pivot using mediam of five
 void swap(int & a, int & b);
 
-// randomized quick select, expected rumtiem is O(n)
+// quick select, select A[0] as pivot, Runtime is ϴ(n) 
 int quick_select(vector <int> & A, int k){
-	int p = rand()% A.size(); // get a random number between 0 and size of Array -1
+	int p = choose_pivot(A); // pivot
 	int i = partition(A,p);
 
 	if ( i == k ){
@@ -26,6 +25,46 @@ int quick_select(vector <int> & A, int k){
 		return quick_select(new_A,k-i-1);
 	}
 	return 0;
+}
+
+int choose_pivot(vector<int> & A){
+	int m = A.size() / 5 - 1;
+	if( m <= 0 ){
+		return 0;
+	}
+	for (int i = 0; i < m; ++i) {
+		int a = 5 * i ;			    
+		int b = 5 * i + 1 ;   
+		int c = 5 * i + 2 ;
+		int d = 5 * i + 3 ;
+		int e = 5 * i + 4 ;
+		// algorithm for compute medium of 5
+		// the maximun comparsion is 6.
+		if(A[b] < A[a])        
+			swap(A[a], A[b]);        // a < b
+		if(A[d] < A[c])
+			swap(A[c], A[d]);        // a < b , c < d
+		if(A[c] < A[a]){
+			swap(A[c], A[a]);
+			swap(A[b], A[d]);        // a < b , a < c , c < d
+		}
+		swap(A[a],A[e]);             // a , b , c < d ( e out )
+		if(A[b] < A[a])
+			swap(A[a], A[b]);        // a < b , c < d
+		if(A[c] < A[a]){
+			swap(A[c], A[a]);
+			swap(A[b], A[d]);        // a < b , c < d , a < c ( a out )
+		}                            // c < d, b
+		if(A[b] < A[c]){
+			swap(A[b], A[i]); 
+		}else{
+			swap(A[c], A[i]);
+		}
+	}
+	vector<int>::const_iterator begin = A.begin();
+	vector<int>::const_iterator end = A.begin() + m;
+	vector<int> Arr(begin,end);
+	return quick_select(Arr, m/2);
 }
 
 int partition(vector <int> & A, int p){
@@ -58,7 +97,6 @@ int main() {
 	int n; // input reads
 	int k; // the position to select
 	vector <int> input; // store input array in an vector <int>
-	srand (time(NULL)); // set a rand seed
 
 	cout << "input the size of the array: ";
 	cin >> size;
