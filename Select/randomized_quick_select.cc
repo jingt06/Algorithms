@@ -1,5 +1,7 @@
 #include <vector>
 #include <iostream>
+#include <stdlib.h>     
+#include <time.h>       
 using namespace std;
 
 int partition(vector <int> & A, int p);
@@ -7,7 +9,7 @@ void swap(int & a, int & b);
 
 // quick select, select A[0] as pivot, Runtime is ϴ(n) 
 int quick_select(vector <int> & A, int k){
-	int p = 0; // pivot
+	int p = rand()% A.size(); // pivot
 	int i = partition(A,p);
 
 	if ( i == k ){
@@ -56,6 +58,7 @@ int main() {
 	int n; // input reads
 	int k; // the position to select
 	vector <int> input; // store input array in an vector <int>
+	srand (time(NULL));
 
 	cout << "input the size of the array: ";
 	cin >> size;
