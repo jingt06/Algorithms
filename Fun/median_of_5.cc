@@ -1,5 +1,10 @@
 using namespace std;
 
+void swap(int & a, int & b){
+	int tmp = a;
+	a = b;
+	b = tmp;
+}
 
 //the worst case comparision is minimun, which is 6 times
 int median_of_5 ( int a , int b , int c , int d , int e){
