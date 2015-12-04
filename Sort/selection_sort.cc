@@ -5,7 +5,7 @@ using namespace std;
 
 vector <int> Merge (vector<int> & A , vector<int> & B);
 
-//merge_sort: runtime O(nlogn)
+//selection sort: runtime O(n^2)
 void selection_sort(vector<int> & A){
 	vector<int>::iterator min; // points to max number in the current loop
 	for(vector<int>::iterator i = A.begin(); i != A.end(); ++i) {
