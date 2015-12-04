@@ -5,6 +5,7 @@ using namespace std;
 // counting_sort , runtime Θ(n + max)
 void counting_sort(vector<int> & A, int max){
 	int * Count = new int [max];
+	memset(Count,0,max);
 	for(vector<int>::iterator i = A.begin(); i != A.end(); ++i) {
 		++Count[*i];
 	}
