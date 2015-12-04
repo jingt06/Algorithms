@@ -3,7 +3,6 @@
 using namespace std;
 
 
-vector <int> Merge (vector<int> & A , vector<int> & B);
 
 //insertion sort: runtime O(n^2)
 void insertion_sort(vector<int> & A){

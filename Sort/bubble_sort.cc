@@ -3,7 +3,6 @@
 using namespace std;
 
 
-vector <int> Merge (vector<int> & A , vector<int> & B);
 
 //bubble sort: runtime O(n^2)
 void bubble_sort(vector<int> & A){
