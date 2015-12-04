@@ -5,10 +5,10 @@ using namespace std;
 
 vector <int> Merge (vector<int> & A , vector<int> & B);
 
-//bubble sort: runtime O(n^2)
-void bubble_sort(vector<int> & A){
-	for(vector<int>::iterator i = A.begin() ; i != A.end(); ++i) {
-		for(vector<int> ::iterator j = A.end()-1; j != A.begin(); --j) {
+//insertion sort: runtime O(n^2)
+void insertion_sort(vector<int> & A){
+	for(vector<int>::iterator i = A.begin()+1 ; i != A.end(); ++i) {
+		for(vector<int> ::iterator j = i; j != A.begin(); --j) {
     		if(*(j - 1) > *j){
 				int tmp = *(j-1);
 				*(j - 1) = *j;
@@ -29,7 +29,7 @@ int main() {
 		input.push_back(n);
 	}
 
-	bubble_sort(input);
+	insertion_sort(input);
 	cout<<endl<< "sorted array: "<<endl;
 	for(vector<int>::iterator it = input.begin(); it != input.end(); ++it) {
     	cout<< *it <<endl;
