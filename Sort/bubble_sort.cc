@@ -7,9 +7,7 @@ vector <int> Merge (vector<int> & A , vector<int> & B);
 
 //bubble sort: runtime O(n^2)
 void bubble_sort(vector<int> & A){
-	vector<int>::iterator min; // points to max number in the current loop
 	for(vector<int>::iterator i = A.begin()+1 ; i != A.end(); ++i) {
-		min = i;
 		for(vector<int> ::iterator j = i; j != A.begin(); --j) {
     		if(*(j - 1) > *j){
 				int tmp = *(j-1);
