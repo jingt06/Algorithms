@@ -22,8 +22,6 @@ void bubble_sort(vector<int> & A){
 int main() {
 	int n; // input reads
 	vector <int> input; // store input array in an vector <int>
-
-
 	cout << "input the array need to sort "  << endl;
 	while( cin >> n ) {
 		input.push_back(n);

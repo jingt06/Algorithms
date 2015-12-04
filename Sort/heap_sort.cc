@@ -1,0 +1,87 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+class Max_heap {
+	public:
+		vector<int> heap;
+
+		Max_heap(vector<int> input){ // ctor for Max_heap
+			heap = input;
+			heapify();
+		}
+
+		//bubble down at position i
+		void bubble_down(int i){
+			int size = heap.size();
+			while(i < size/2){
+				int left = 2*i + 1;
+				int right = 2*i + 2 == size ? 2*i + 1 : 2*i + 2;
+				int larger_children;
+				if(heap[left] >= heap[right]){
+					larger_children = left;
+				}else{
+					larger_children = right;
+				}
+				if(heap[larger_children] > heap[i]){
+					int tmp = heap[i];
+					heap[i] = heap[larger_children];
+					heap[larger_children] = tmp;
+					i = larger_children;
+				}else{
+					break;
+				}
+			}
+		}
+
+		//bubble up at position i
+		void bubble_up(int i){
+			while(i!=0 && heap[(i-1)/2] < heap[i]){
+				int tmp = heap[i];
+				heap[i] = heap[(i-1)/2];
+				heap[(i-1)/2] = tmp;
+				i = (i-1)/2;
+			}
+		}
+
+		//heapify of runtime Ɵ(n)
+		void heapify(){
+			int n = heap.size()-1;
+			for(int i = n/2 ;i >= 0; i--){
+				bubble_down(i);
+			}
+		}
+
+		//heap insedrt a integer i
+		void insert(int i){
+			heap.push_back(i);
+			bubble_up(heap.size()-1);	
+		}
+
+		//return and delete the max key in the Max Heap
+		int delete_max(){
+			int size = heap.size();
+			int max = heap[0];
+			heap[0] = heap[size-1];
+			heap[size-1] = max;
+			heap.pop_back();
+			bubble_down(0);
+			return max;
+		}
+};
+
+
+int main(){
+	cout << "please input a sequence of integers" << endl;
+	vector<int> items;
+	Max_heap * max_heap = new Max_heap(items);
+	int input;
+	while( cin>>input ){
+		max_heap->insert(input);
+	}
+	cout<<endl<< "Heap Sort Result"<<endl;
+	while(max_heap->heap.size()!=0){
+		cout<< max_heap->delete_max()<<endl;
+	}
+}
