@@ -89,7 +89,7 @@ class Bst { // Binary search tree
 					while(iterator->left){
 						iterator = iterator->left;
 					}
-					iterator->parent->left = NULL;
+					iterator->parent->left = iterator->right;
 					this->key = iterator->key;
 					this->val = iterator->val;
 					delete iterator;
@@ -111,6 +111,17 @@ class Bst { // Binary search tree
 			}
 		}
 
+		void print(){
+			print_rec(0);
+		}
+		void print_rec(int n){
+
+			string space(n, ' ');
+			n++;
+			if(left) left->print_rec(n);
+			cout<< space << key << " " << val << endl;
+			if(right) right->print_rec(n);
+		}
 };
 
 
