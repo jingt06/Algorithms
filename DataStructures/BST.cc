@@ -59,17 +59,18 @@ class Bst { // Binary search tree
 		}
 
 		void Delete(int k){
-
 			if(key == k){
 				//find inorder successor of the node
 				Bst * iterator = right;
 				if(iterator == NULL){
 					if(parent->left == this){
 						parent->left = left;
+						if(left) left->parent = parent;
 						delete this;
 						return;
 					}else{
 						parent->right = left;
+						if(left) left->parent = parent;
 						delete this;
 						return;
 					}
@@ -77,11 +78,15 @@ class Bst { // Binary search tree
 					if(parent->left == this){
 						parent->left = iterator;
 						iterator->left = right;
+						if(right) right->parent = iterator;
+						iterator->parent = parent;
 						delete this;
 						return;
 					}else{
 						parent->right = iterator;
 						iterator->left = right;
+						if(right) right->parent = iterator;
+						iterator->parent = parent;
 						delete this;
 						return;
 					}
