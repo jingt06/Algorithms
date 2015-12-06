@@ -18,7 +18,7 @@ class Hashing{
 public:
 	Hashing(){
 		kvps = new KVP * [11]; // hashing function is x % 11
-		for(int i = 0 ; i < 100 ; i++){ 
+		for(int i = 0 ; i < 11 ; i++){ 
 			kvps[i] = NULL; // set all KVP to NULL
 		}
 	}
