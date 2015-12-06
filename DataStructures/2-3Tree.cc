@@ -2,8 +2,8 @@
 using namespace std;
 class tree23;
 void swap(int & a , int & b);
-bool Insert(tree23 * & node, int k , int v);
-void promote(tree23 * & p, tree23 * & node , int  k , int v );
+tree23 * Insert(tree23 * & node, int k , int v);
+tree23 * promote(tree23 * & p, tree23 * & node , tree23 * & left, tree23 * & right , int  k , int v );
 
 
 class tree23 { // Binary search tree
@@ -51,9 +51,15 @@ class tree23 { // Binary search tree
 		}
 };
 
+tree23 * getroot(tree23 * node){
+	if (node->parent){
+		node = node->parent;
+	}
+	return node;
+}
 
 
-bool Insert(tree23 * & node, int k , int v){
+tree23 * Insert_rec(tree23 * & root, tree23 * & node, int k , int v){
 	if(!node->full && !node->left ){ // node is not full and node is a leaf
 		if (k > node-> key1){
 			node->key2 = k;
@@ -65,23 +71,23 @@ bool Insert(tree23 * & node, int k , int v){
 			node->val1 = v;
 		}else{
 			cout<< "duplicate key, insert fail"<<endl;
-			return false;
+			return getroot(node);
 		}
 		node->full = true;
-		return true;
+		return getroot(node);;
 	}else if(node->left){ // node is not a leaf
 		if(k < node->key1 ){
-			Insert(node->left, k , v);
+			return Insert_rec(root, node->left, k , v);
 		}else if( k == node->key1 ){
 			cout<< "duplicate key, insert fail"<<endl;
-			return false;
+			return getroot(node);;
 		}else if( k > node->key1 && (!node->full || (node->full &&  k < node->key2))){
-			Insert(node->mid, k , v);
+			return Insert_rec(root, node->mid, k , v);
 		}else if( k == node->key2){
 			cout<< "duplicate key, insert fail"<<endl;
-			return false;
+			return getroot(node);
 		}else{
-			Insert(node->right,k,v);
+			return Insert_rec(root, node->right,k,v);
 		}
 	}else{ // node is a leaf and full
 		if(k >= node->key2){ // key1 <= key2 <= k,   key2 shoud be promoted
@@ -91,18 +97,77 @@ bool Insert(tree23 * & node, int k , int v){
 			swap(node->key1,k);
 			swap(node->val1,v);
 		}
-		promote(node->parent, node , k , v);
-		return true;
+		tree23 * left = new tree23(node->key1, node->val1,node->parent);
+		tree23 * right = new tree23(node->key2, node->val2,node->parent);
+		return getroot(promote(node->parent, node, left , right , k , v));
 	}
-	return false;
+	return node;
 }
 
-void promote(tree23 * & p, tree23 * & node , int  k , int v ){
+tree23 * Insert (tree23 * & root, int k , int v ){
+	return Insert_rec(root,root,k,v);
+}
+
+tree23 * promote(tree23 * & p, tree23 * & node , tree23 * & left , tree23 * & right , int  k , int v ){
 	if(!p){ // node is root, ( parent is NULL )
 		tree23 * newroot = new tree23(k,v);
-		newroot->left = new tree23(node->key1, node->val1, newroot);
-		newroot->mid = new tree23(node->key2, node->val2, newroot);
-		node = newroot;
+		newroot->left = left;
+		newroot->mid = right;
+		left->parent = newroot;
+		right->parent = newroot;
+		delete node;
+		return newroot;
+	}else{ // node is not root
+		if(p->full) { // parent is full , need to promote again
+			//cout<<k << " "  <<v <<endl;//debug
+			//cout<< left->key1 <<endl;//debug
+			//cout<< right->key1 <<endl;//debug
+			//p->print();
+			if(k >= p->key2){ // key1 <= key2 <= k,   key2 shoud be promoted
+				swap(p->key2,k);
+				swap(p->val2,v);
+			}else if (k < p->key1 ){ // k < key1 <= key2, key1 should be promoted
+				swap(p->key1,k);
+				swap(p->val1,v);
+			}
+			tree23 * new_left = new tree23(p->key1, p->val1,p->parent);
+			tree23 * new_right = new tree23(p->key2, p->val2,p->parent);
+			if(node == p->left){
+				new_left->left = left;
+				new_left->mid = right;
+				new_right->left = p->mid;
+				new_right->mid = p->right;
+			}else if ( node == p->mid ){
+				new_left->left = p->left;
+				new_left->mid = left;
+				new_right->left = right;
+				new_right->mid = p->right;
+			}else if ( node == p->right ){
+				new_left->left = p->left;
+				new_left->mid = p->mid;
+				new_right->left = left;
+				new_right->mid = right;
+			}
+			node = p;
+			return promote(node->parent, node, new_left , new_right , k , v);
+		}else{ // parent is not full
+			p->full = true;
+			if(k > p->key1){ 
+				p->key2 = k;
+				p->val2 = v;
+				p->mid = left;
+				p->right = right;
+			}else{
+				p->key2 = p->key1;
+				p->val2 = p->val1;
+				p->key1 = k;
+				p->val1 = v;
+				p->right = p->mid;
+				p->mid = right;
+				p->left = left;
+			}
+			return p;
+		}
 	}
 }
 
@@ -118,7 +183,21 @@ void swap ( int & a , int & b ){
 
 int main(){
 	tree23 * tree = new tree23 (0, 0);
-	Insert(tree, 1 ,3);
-	Insert(tree, 2 ,4);
+	tree = Insert(tree, 1 ,3);
+	tree = Insert(tree, 2 ,4);
+	tree = Insert(tree, 3 ,5);
+	tree = Insert(tree, 4 ,15);
+	cout<<endl;
+	tree->print();
+	tree = Insert(tree, 5 ,15);
+	tree->print();
+	tree = Insert(tree, 6 ,115);
+	cout<<endl;
+	tree->print();
+	Insert(tree, 7 ,100);
+	cout<<endl;
+	tree->print();
+	Insert(tree, 9,100);
+	cout<<endl;
 	tree->print();
 }
