@@ -14,7 +14,7 @@ public:
 };
 
 class Hashing{
-	KVP ** kvps; // length of 100;
+	KVP ** kvps; // length of 10;
 public:
 	Hashing(){
 		kvps = new KVP * [11];
