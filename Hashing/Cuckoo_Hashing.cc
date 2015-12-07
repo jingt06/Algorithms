@@ -60,8 +60,32 @@ public:
 		return;
 	}
 	void Delete(int k){
+		if(h[func1(k)] && h[func1(k)]->key == k){
+			delete h[func1(k)];
+			h[func1(k)] = NULL;
+			cout<<"delete success" <<endl;
+			return;
+		}else if(h[func2(k)] && h[func2(k)]->key == k){
+			delete h[func2(k)];
+			cout<<"delete success" <<endl;
+			h[func2(k)] = NULL;
+			return;
+		}else{
+			cout << "key not found" <<endl;
+			return;
+		}
 	}
 	void Search(int k){
+		if(h[func1(k)] && h[func1(k)]->key == k){
+			cout << "value at " << k << " is " << h[func1(k)]->val <<endl;
+			return;
+		}else if(h[func2(k)] && h[func2(k)]->key == k){
+			cout << "value at " << k << " is " << h[func2(k)]->val <<endl;
+			return;
+		}else{
+			cout << "key not found" <<endl;
+			return;
+		}
 	}
 
 	void Print(){
