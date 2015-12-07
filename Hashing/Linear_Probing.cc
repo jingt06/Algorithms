@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class KVP{ // key value pare
+class KVP{ // key value pair
 public:
 	int key;
 	int val;
