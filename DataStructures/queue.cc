@@ -5,7 +5,7 @@ using namespace std;
 
 class node {
 	public:
-		int x;
+		int x;//sssss
 		node * next;
 
 		node(int n){	// ctor for node
