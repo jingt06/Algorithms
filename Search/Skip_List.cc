@@ -72,7 +72,7 @@ public:
 		}
 		node* new_node = new node(k,v,iterator->next);
 		node* pre_node = new_node;
-		if(iterator->next) iterator->pre = new_node;
+		if(iterator->next) iterator->next->pre = new_node;
 		new_node->pre = iterator;
 		iterator->next = new_node;
 		int n = toss();
@@ -101,6 +101,47 @@ public:
 			pre_node = new_node;
 		}
 		cout<<"insert success"<<endl;
+	}
+	void Search(int k){
+		node* iterator = S3;
+		while((iterator->next && k >= iterator->next->key) || iterator->down){
+			if(iterator->next &&  k >= iterator->next->key){
+				iterator = iterator->next;
+			}else if(iterator->down){
+				iterator = iterator->down;
+			}
+		}
+		if(iterator->key == k){
+			cout<<"result: "<< iterator->val <<endl;
+		}else{
+			cout<<"key not found, search fail"<<endl;
+		}
+	}
+	void Delete(int k){
+		node* iterator = S3;
+		while((iterator->next && k >= iterator->next->key) || iterator->down){
+			if(iterator->key == k && !iterator->bound){
+				break;
+			}else if(iterator->next &&  k >= iterator->next->key){
+				iterator = iterator->next;
+			}else if(iterator->down){
+				iterator = iterator->down;
+			}
+		}
+		if(iterator->key != k || iterator->bound){
+			cout<<"key not found, delete fail"<<endl;
+			return;
+		}else{
+			while(iterator){
+				if(iterator->next){
+					iterator->next->pre = iterator->pre;
+				}
+				iterator->pre->next = iterator->next;
+				node* down_node = iterator->down;
+				delete iterator;
+				iterator = down_node;
+			}
+		}
 	}
 
 	void print(){
@@ -156,12 +197,12 @@ int main()
 			cin >> k;
 			cin >> v;
 			skip_list->Insert(k,v);
-		}else if(cmd == "delete"){
-			cin >> k;
-			//skip_list->Delete(k);
 		}else if (cmd == "search"){
 			cin >> k; 
-			//skip_list->Search(k);
+			skip_list->Search(k);
+		}else if (cmd == "delete"){
+			cin >> k; 
+			skip_list->Delete(k);
 		}else if (cmd == "print"){
 			skip_list->print();
 		}
