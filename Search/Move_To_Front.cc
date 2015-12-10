@@ -37,11 +37,13 @@ class MTF{
 		int Search(int k){
 			node* n = first;
 			while(n && n->key != k){
+				cout<<"a";
 				n = n->next;
 			}
 			if(n){
 				cout << "result: "<< n->val<<endl;
-				n->pre->next = n->next;
+				if(n->pre) n->pre->next = n->next;
+				else first = n->next;
 				if(n->next) n->next->pre = n->pre;
 				n->next = first;
 				n->pre = NULL;
