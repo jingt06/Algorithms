@@ -29,6 +29,9 @@ public:
 	}
 };
 
+//Skip-Search: O(log n) expected time
+//Skip-Insert: O(log n) expected time
+//Skip-Delete: O(log n) expected time
 class Skip_List{ // a Skip list with maximun height 4
 public:
 	node* S3;
