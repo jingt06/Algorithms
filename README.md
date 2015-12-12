@@ -1,5 +1,6 @@
 #Algorithms
 ---
+- [What is Algorithm and Efficiency](https://github.com/jingt06/Algorithms/blob/master/md/algo.md)
 - [Data Structure](https://github.com/jingt06/Algorithms/tree/master/DataStructures)
   - Queue
   - Stack
