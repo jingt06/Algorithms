@@ -1,6 +1,6 @@
 #Algorithms
 ---
-- [DataStructure](https://github.com/jingt06/Algorithms/tree/master/DataStructures)
+- [Data Structure](https://github.com/jingt06/Algorithms/tree/master/DataStructures)
   - Queue
   - Stack
   - Binary Search Tree
@@ -11,4 +11,44 @@
   - kd-Tree
   - Quad Tree
   - Tries
+- [Hashing](https://github.com/jingt06/Algorithms/tree/master/Hashing)
+  - Direct Hashing
+  - Linear Probing Hashing
+  - Double Hashing
+  - Chaining Hashing
+  - Cuckoo Hashing
+  - Extendible Hashing
+- [Select](https://github.com/jingt06/Algorithms/tree/master/Select)
+  - Quick Select
+  - Randomized Quick Select
+  - Medians of Five Quick Select
+- [Sort](https://github.com/jingt06/Algorithms/tree/master/Sort)
+  - Bubble Sort
+  - Selection Sort
+  - Insertion Sort
+  - Quick Sort
+  - Merge Sort
+  - Heap Sort
+  - Counting Sort
+  - Radix Sort
+- [Search](https://github.com/jingt06/Algorithms/tree/master/Search) 
+  - Linear Search
+  - Binary Search
+  - Gallop Search
+  - Move To Front Search
+  - Transpose Sequential Search
+  - Interpolation Search
+  - Range Search
+  - Skip List Search
+- [Pattern Matching](https://github.com/jingt06/Algorithms/tree/master/PatternMatching)
+  - Brute Force Algorithm
+  - Knuth-Morris-Pratt Algorithm
+  - Boyer-Moore Algorithm
+- [Compression](https://github.com/jingt06/Algorithms/tree/master/Compression)
+  - Run Length Encoding
+  - Huffman Coding
+  - Move To Front
+  - Lempel-Ziv
+  - Burrows Wheeler Transform
+- [Fun](https://github.com/jingt06/Algorithms/tree/master/Fun) Just For Fun
   
