@@ -172,3 +172,4 @@ Range trees for 2 dimensional
   - A right child corresponds to a 1 bit
 - **prefix-free**: no key is a prefix of a another key
 - Time Complexity of all operations (Search, Insert, Delete) is **Θ(|x|)**, where x is length of binary string.
+- [code](https://github.com/jingt06/Algorithms/blob/master/DataStructures/Tries.cc)
