@@ -67,4 +67,3 @@ Search for **many patterns** P within the same fixed text T.
 |**Preprocessing**| /| O(m)|O (m + \|Σ\|)| O(n^2)|
 |**Search time**|O(nm)|O(n)|O(n) often better|O(m)|
 |**Extra space**|/ | O(m)|O (m + \|Σ\|) | O(n)|
-
