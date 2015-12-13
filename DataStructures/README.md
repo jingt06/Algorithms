@@ -163,3 +163,12 @@ Range trees for 2 dimensional
 - **Storage**: O(n (log n)^(d−1))
 - **Construction time**: O(n (log n)^(d−1))
 - **Range query time**: O((log n)^d + k)
+
+##Trie
+- A dictionary for binary strings
+- Structure of trie:
+  - Item(keys) are stored only in the leaf nodes
+  - A left child corresponds to a 0 bits
+  - A right child corresponds to a 1 bit
+- **prefix-free**: no key is a prefix of a another key
+- Time Complexity of all operations (Search, Insert, Delete) is **Θ(|x|)**, where x is length of binary string.
