@@ -90,3 +90,5 @@ A description of **information** and a collection of **operations** on that info
 - **Height** of a B-tree is Θ
 (log n)/(log d).
 - Cost of **search**, **insert**, **delete** is = O(log n);
+
+##Multi-Dimensional Data
