@@ -1,25 +1,25 @@
 ##Abstract Data Types
 A description of **information** and a collection of **operations** on that information.
 
-####Dynamic Arrays  
+###Dynamic Arrays  
 - Allocate a small array initially, and double its size as needed.
 - Or Allocate one HUGE array, and only use the first part of it
 - [code](https://github.com/jingt06/Algorithms/blob/master/DataStructures/Dynamic_Array.cc)
 
-#### Stack ADT
+### Stack ADT
 - Items are removed in **LIFO** (last-in first-out) order
 - Realizations of Stack ADT
   - Array
   - Linked list - [code](https://github.com/jingt06/Algorithms/blob/master/DataStructures/stack.cc) 
 
 
-#### Queue ADT
+### Queue ADT
 - Items are removed in **FIFO** (first-in first-out) order
 - Realizations of Queue ADT
   - using (circular) arrays
   - using linked list - [code](https://github.com/jingt06/Algorithms/blob/master/DataStructures/queue.cc) 
 
-#### Dictionary ADT
+### Dictionary ADT
 - A **dictionary** is a collection of **items**, each of which contains a **key** and some **data** and is called a **key-value pair (KVP)**. Keys can be compared and are (typically) unique.  
 - Unordered array or linked list
   - search Θ(n)
@@ -31,7 +31,7 @@ A description of **information** and a collection of **operations** on that info
   - delete Θ(n) 
 
 ##Tree
-#### Binary Search Trees
+### Binary Search Trees
 - **Structure**: A BST is either empty or contains a KVP, left child.
 - **Ordering**: Every key k in T.left is less than the root key. Ever key in T.right is greater than the root key.
 - **Operations**: 
@@ -44,7 +44,7 @@ A description of **information** and a collection of **operations** on that info
   - Average-case: Θ(log n)
 - [code](https://github.com/jingt06/Algorithms/blob/master/DataStructures/BST.cc)
 
-####AVL Tree
+###AVL Tree
 - Introduced by Adel’son-Vel’ski˘ı and Landis in 1962
 - An **AVL Tree** is a BST with an additional structural property: The heights of the left and right subtree differ by at most 1
 - **Balance Factor** = height(R) - height(L) ∈ {−1, 0, 1}
@@ -66,7 +66,7 @@ A description of **information** and a collection of **operations** on that info
 - [code](https://github.com/jingt06/Algorithms/blob/master/DataStructures/AVLtree.cc)
 
 
-#### 2-3 Tree
+### 2-3 Tree
 - 2-3 Tree is like a BST with additional structual properties:
   - Every node either conatins **one KVP** and **two children**, or **two KVPS** and **three chidlren**.
   - ALl the leaves are at the **same lavel**.
@@ -83,7 +83,7 @@ A description of **information** and a collection of **operations** on that info
      -  Otherwise, **merge** V and a 1-node sibling U.
 - [code](https://github.com/jingt06/Algorithms/blob/master/DataStructures/2-3Tree.cc) Still buggy
 
-####B-Tree
+###B-Tree
 - A **B-tree of minsize d** is a search tree satisfying:
    - Each node contains at most 2d KVPs. Each non-root node contains at least d KVPs.
    - All the leaves are at the same level
@@ -93,7 +93,7 @@ A description of **information** and a collection of **operations** on that info
 
 ##Multi-Dimensional Data
 
-#### Quadtree
+### Quadtree
 Suppose we have n points P = {(x0, y0),(x1, y1), . . . ,(xn−1, yn−1)} in the plane
 
 **Build** a quadtree on P
@@ -116,7 +116,7 @@ Worst-case complexity of **range search** = O(#nodes) = O(nh)
 
 [code](https://github.com/jingt06/Algorithms/blob/master/DataStructures/Quadtree.cc)
 
-####kd-tree
+###kd-tree
 Suppose we have n points P = {(x0, y0),(x1, y1), . . . ,(xn−1, yn−1)} in the plane
 
 **Build** a kd-tree on P
@@ -149,7 +149,7 @@ kd-tree for d-dimensional space
 
 [code](https://github.com/jingt06/Algorithms/blob/master/DataStructures/kd_tree.cc)
 
-####Range Tree
+###Range Tree
 Range trees for 2 dimensional
 
 - **Range Search** Running time: O(k + log^2 n)
