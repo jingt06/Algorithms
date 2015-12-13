@@ -33,6 +33,19 @@ then perform binary search in A[i ... 2i], Otherwise, double i.
 
 [code](https://github.com/jingt06/Algorithms/blob/master/Search/Gallop_Search.cc)
 
+##Range Search(One-Dimensional)
+Using Balanced BST(eg. AVL tree)
+
+k: number of reported items
+
+Nodes visited during search:
+
+- O(log n) boundary nodes
+- O(k) inside nodes
+- No outside nodes
+
+Running time: **O(log(n) + k)**
+
 ##Dynamic Ordering
 - **Move-To-Front(MTF)**: Upon a successful search, move the accessed item to the front of the list.   [code](https://github.com/jingt06/Algorithms/blob/master/Search/Move_To_Front.cc)
 - **Transpose**:  Upon a successful search, swap the accessed item with the item immediately preceding it. [code](https://github.com/jingt06/Algorithms/blob/master/Search/Transpose_Sequential_Search.cc)
