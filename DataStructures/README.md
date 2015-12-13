@@ -37,7 +37,7 @@ A description of **information** and a collection of **operations** on that info
 - **Operations**: 
   - **search(k)**: Compare k to current node, stop if found, else recurse on subtree unless it's empty. **Runtime: Θ(h)**
   - **insert(k,v)**: Search for k, then insert (k,v) as new node. **Runtime: Θ(h)**
-  - **delete(k)**: Search for k, if node is a leaf, just delete it; if node has one child, move child up; Elsem swap with successor or predecessor node and than delete **Runtime: Θ(h)**
+  - **delete(k)**: Search for k, if node is a leaf, just delete it; if node has one child, move child up; Else swap with successor or predecessor node and than delete **Runtime: Θ(h)**
 - **Height of a BST**: 
   - Worst-case: n - 1 = Θ(n)
   - Best-case: Θ(log n)
@@ -63,7 +63,7 @@ A description of **information** and a collection of **operations** on that info
   - **search(k)**: Θ(height)
   - **delete(k)**: Θ(height), **fix** may be called Θ(height) times. Total cost is Θ(height)
 - **Height** of AVL Tree is Θ(log n)
-- [code](https://raw.github.com/jingt06/Algorithms/blob/master/md/avl_height.jpg?raw=true)
+- [code](https://github.com/jingt06/Algorithms/blob/master/DataStructures/AVLtree.cc)
 
 
 #### 2-3 Tree
