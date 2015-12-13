@@ -92,3 +92,74 @@ A description of **information** and a collection of **operations** on that info
 - Cost of **search**, **insert**, **delete** is = O(log n);
 
 ##Multi-Dimensional Data
+
+#### Quadtree
+Suppose we have n points P = {(x0, y0),(x1, y1), . . . ,(xn−1, yn−1)} in the plane
+
+**Build** a quadtree on P
+
+1. Find square R that contains all points of P.
+2. Root of quadtree corresponds to R
+3. **Split**: Partition R into four equal subsquares, each is a child of R.
+4. Recursively repeat this process for any node that containts more than one point
+5. Each leaf stores one point
+
+**Spread factor** of points P:β(P) = dmax/dmin 
+
+dmax(dmin):max(min) distance between two points in P
+
+**Height** of quadtree:  h ∈ Θ(log dmax/dmin)
+
+Worst-case complexity to **build initial tree** = Θ(#nodes) = Θ(nh)
+
+Worst-case complexity of **range search** = O(#nodes) = O(nh)
+
+[code](https://github.com/jingt06/Algorithms/blob/master/DataStructures/Quadtree.cc)
+
+####kd-tree
+Suppose we have n points P = {(x0, y0),(x1, y1), . . . ,(xn−1, yn−1)} in the plane
+
+**Build** a kd-tree on P
+
+1. Split P into two equal subsets using vertical line
+2. Split each of the two subsets into two equal pieces using horizontal lines
+3. Continue until every point is in a separate region
+
+**Complexity of build a kd-tree**: Θ(n log n)
+
+**height of the tree**: Θ(log n)
+
+**Complexity of Range Search**: O(k + U) where k is number of keys **reported** and U is number of regions we go to but **unsuccessfully**, It solves to O（k + √n)
+
+- **Analysis**: consider if the query is with a vertical line l.
+- **Observe**: At every vertical split, l is to one siede; while at every horizontal split l is to both sides (number of intersected region doubled)
+- Let G(n) be the number of intersected d region in a kd-tree with n points(leaves). 
+- G(1) = 1 
+- G(n) = 1 + G(n/2) at even depth
+- G(n) = 1 + 2G(n/2) at odd depth
+- We get G(n) = 2 G(n/4) + O(1)
+- Solves to G(n) = O(√n)
+
+
+kd-tree for d-dimensional space
+
+- **Storage**: O(n)
+- **Construction time**: O(n log n)
+- **Range Query Time**: O( n^(1- 1/d) + k)
+
+[code](https://github.com/jingt06/Algorithms/blob/master/DataStructures/kd_tree.cc)
+
+####Range Tree
+Range trees for 2 dimensional
+
+- **Range Search** Running time: O(k + log^2 n)
+- **Construction Time**: O(n log n)
+- **Space Usage**: O(n log n)
+
+[code](https://github.com/jingt06/Algorithms/blob/master/DataStructures/RangeTree.cc) - Range Search not completed
+
+**Range trees for d-dimensional space**
+
+- **Storage**: O(n (log n)^(d−1))
+- **Construction time**: O(n (log n)^(d−1))
+- **Range query time**: O((log n)^d + k)
