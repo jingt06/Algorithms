@@ -52,4 +52,5 @@
   - Lempel-Ziv
   - Burrows Wheeler Transform
 - [Fun](https://github.com/jingt06/Algorithms/tree/master/Fun) Just For Fun
-  
+ 
+- [Divide and conquer](https://github.com/jingt06/Algorithms/tree/master/DivideAndConquer)
